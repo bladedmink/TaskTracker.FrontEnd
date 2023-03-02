@@ -1,0 +1,70 @@
+<h1>Tasks</h1>
+
+<!-- Add Task Form -->
+<div class="example-form" style="margin-top:50px;">
+
+  <br />
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="task.title">
+  </mat-form-field>
+
+  <br />
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <textarea matInput placeholder="Cook dinner" [(ngModel)]="task.description"></textarea>
+  </mat-form-field>
+
+
+  <button mat-raised-button color="primary" (click)="addTask()">Add Task</button>
+
+</div>
+
+<br/>
+
+<!-- Tasks -->
+<table mat-table [dataSource]="tasks" class="mat-elevation-z8">
+
+  <!-- Id Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let task"> {{task.id}} </td>
+  </ng-container>
+
+  <!-- Status Column -->
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <td mat-cell *matCellDef="let task"> {{task.status}} </td>
+  </ng-container>
+
+  <!-- Title Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title </th>
+    <td mat-cell *matCellDef="let task"> {{task.title}} </td>
+  </ng-container>
+
+  <!-- Date Created Column -->
+  <ng-container matColumnDef="dateCreated">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let task"> {{task.createdDate | date:'medium'}} </td>
+  </ng-container>
+
+  <!-- Date Created Column -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let task"> {{task.description}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<br />
+<button mat-raised-button color="warn" (click)="deleteTask()">Remove Task</button>
+
+<br/>
+
+<!-- {{task | json}} -->
+
+<!-- {{tasks | json}} -->
